@@ -161,6 +161,13 @@ module OodCore
                 }
                 export -f port_used
 
+                # Find available port in range [$2..$3] for host $1
+                # Default host: localhost
+                # Default port range: [#{min_port}..#{max_port}]
+                # Returns error code (0: success, 1: failed)
+                # Sets an odd port number if USE_SSL=TRUE is set in app script, otherwise even
+                # On success, the chosen port is echoed on stdout
+
                 find_port () {
                   local host="${1:-localhost}"
                   local min_port=${2:-#{min_port}}
